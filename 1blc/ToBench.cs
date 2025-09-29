@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
+
 namespace _1blc;
 
 public class ToBench
@@ -49,11 +50,12 @@ public class ToBench
         var parts = Helpers.SplitFile(path, numberOfBlocks);
 
 
-        var result = parts.Select((p, i) => p.ReadBuffer(i)).AsParallel().Select((b, i) => ProcessPart<T>(b, i)).Merge();
+        var result = parts.Select((p, i) => p.ReadBuffer(i)).AsParallel().Select((b, i) => ProcessPart<T>(b, i))
+            .Merge();
 
-        //result.Dump();
+      
     }
-    
+
     public static Dictionary<int, DataItem<T>> ProcessPart<T>(byte[] bufferAsBytes, int index) where T : IFloatingPoint<T>
     {
 #if OUTPUT
