@@ -5,6 +5,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace _1blc;
 
+[SimpleJobAttribute()]
 public class ToBench
 {
     const string path = @"C:\Users\henning\source\1brc\data\measurements.txt";
@@ -27,7 +28,7 @@ public class ToBench
     {
         DoItInner<float>();
     }
-
+ 
     public ToBench()
     {
         SizeInMB = 16;
